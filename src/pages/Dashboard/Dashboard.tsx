@@ -2,13 +2,35 @@ import { DashWrapper } from './style';
 import { IonIcon } from '@ionic/react';
 import { logOutOutline } from 'ionicons/icons';
 import { useHistory } from 'react-router';
+import { changeLogState } from '../../context/slices/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../context/store';
+import { useEffect, useState } from 'react';
+import PetsApi from '../../services/api';
 
 const Dashboard = () => {
+	const loginData = useSelector((state: RootState) => state.login);
+	const dispatch = useDispatch();
 	const history = useHistory();
+	const [pets, setPets] = useState(0);
 
 	const logOut = () => {
-		history.push('/');
+		dispatch(changeLogState(false));
+		history.push('/login');
 	};
+
+	useEffect(() => {
+		const getPets = async () => {
+			try {
+				const { data } = await PetsApi.get('/pet/get-all');
+				setPets(data.length);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+
+		getPets();
+	}, []);
 
 	return (
 		<DashWrapper>
@@ -19,11 +41,11 @@ const Dashboard = () => {
 			</div>
 			<div className="welcome">
 				<p>Hola 🐱</p>
-				<p>Gerson!</p>
+				<p>{loginData.firtsName}!</p>
 			</div>
 			<div className="dash-wrap">
 				<div className="pets">
-					<p className="number">10</p>
+					<p className="number">{pets}</p>
 					<p className="text">mascotas</p>
 				</div>
 				<div className="request">

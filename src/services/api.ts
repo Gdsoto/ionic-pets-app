@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const cocktailApi = axios.create({
-	baseURL: 'https://www.thecocktaildb.com/api/json/v1/1',
+const PetsApi = axios.create({
+	baseURL: 'http://186.31.177.165:19994/api',
 });
 
-export default cocktailApi;
+export default PetsApi;

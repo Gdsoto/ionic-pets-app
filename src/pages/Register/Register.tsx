@@ -6,8 +6,13 @@ import Input from '../../components/shared/FormComponents/Input/Input';
 import { Form, FormLabel, FormWrap } from '../../components/shared/Form/Form';
 import { Main, Title } from '../../components/shared/Main/Main';
 import BackButton from '../../components/shared/BackButton/BackButton';
+import PetsApi from '../../services/api';
+import { toast } from 'react-hot-toast';
+import { useHistory } from 'react-router';
 
 const Register = () => {
+	const history = useHistory();
+
 	const {
 		handleSubmit,
 		control,
@@ -19,7 +24,25 @@ const Register = () => {
 	});
 
 	const onSubmit = (data) => {
-		console.log(data);
+		PetsApi.post('/person/create', {
+			firtsName: data?.name,
+			secondName: '',
+			lastName: data?.last_name,
+			email: data?.email,
+			phone: data?.phone,
+			password: data?.password,
+		})
+			.then((response) => {
+				// Manejo de la respuesta exitosa
+				console.log(response.data);
+				toast.success('Usuario creado!');
+				history.push('/login');
+			})
+			.catch((error) => {
+				// Manejo del error
+				toast.error('se presento un problema!');
+				console.log(error);
+			});
 	};
 
 	return (

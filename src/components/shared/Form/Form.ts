@@ -16,7 +16,7 @@ export const FormWrap = styled.section`
 	box-shadow: 0px 0px 1px rgba(48, 49, 51, 0.05),
 		0px 4px 8px rgba(48, 49, 51, 0.1);
 	border-radius: 8px;
-	margin-bottom: 24px;
+	margin-bottom: 90px;
 `;
 
 export const FormLabel = styled.p`

@@ -7,7 +7,8 @@ const config: CapacitorConfig = {
 	bundledWebRuntime: false,
 	server: {
 		androidScheme: 'http',
-		allowNavigation: ['https://www.thecocktaildb.com/api/json/v1/1'],
+		allowNavigation: ['http://186.31.177.165:19994/api'],
+		cleartext: true,
 	},
 };
 

@@ -11,9 +11,15 @@ import { Form, FormLabel, FormWrap } from '../../components/shared/Form/Form';
 import { Main, Title } from '../../components/shared/Main/Main';
 import { useHistory } from 'react-router';
 import BackButton from '../../components/shared/BackButton/BackButton';
+import PetsApi from '../../services/api';
+import { toast } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { changeLogState } from '../../context/slices/authSlice';
+import { updateLoginState } from '../../context/slices/loginSlice';
 
 const Login = () => {
 	const history = useHistory();
+	const dispatch = useDispatch();
 
 	const {
 		handleSubmit,
@@ -26,7 +32,17 @@ const Login = () => {
 	});
 
 	const onSubmit = (data) => {
-		console.log(data);
+		PetsApi.get(`/person/get/${data?.password}/${data?.email}`)
+			.then((res) => {
+				toast.success('Bienvenido!');
+				dispatch(changeLogState(true));
+				dispatch(updateLoginState(res?.data?.persons));
+				history.push(`/dash`);
+			})
+			.catch((error) => {
+				toast.error('Usuario o contraseña incorrecta');
+				console.log(error);
+			});
 	};
 
 	const goToRegister = () => {

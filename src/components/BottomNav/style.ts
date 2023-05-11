@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { GRAY_500, WHITE } from '../../utils/constants';
 
 export const NavWrapper = styled.section`
+	z-index: 1056;
 	box-sizing: border-box;
 	display: flex;
 	width: 100%;
