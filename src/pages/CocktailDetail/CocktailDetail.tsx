@@ -1,5 +1,4 @@
 import { IonPage } from '@ionic/react';
-import Container from '../../components/shared/Container';
 import { RouteComponentProps } from 'react-router';
 import { useEffect, useState } from 'react';
 import cocktailApi from '../../services/api';
@@ -66,16 +65,14 @@ const CocktailDetail: React.FC<PokemonProps> = ({ match }) => {
 
 	return (
 		<IonPage>
-			<Container>
-				<>
-					{!loading && (
-						<>
-							<CocktailInfo cocktail={cocktail} />
-							<Ingredients cocktail={cocktail} />
-						</>
-					)}
-				</>
-			</Container>
+			<>
+				{!loading && (
+					<>
+						<CocktailInfo cocktail={cocktail} />
+						<Ingredients cocktail={cocktail} />
+					</>
+				)}
+			</>
 		</IonPage>
 	);
 };

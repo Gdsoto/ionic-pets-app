@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { IonCol, IonGrid, IonPage, IonRow } from '@ionic/react';
 
 // Components
-import Container from '../../components/shared/Container';
 
 // Styles
 import './Home.css';
@@ -28,7 +27,7 @@ const Home: React.FC = () => {
 
 	return (
 		<IonPage>
-			<Container>
+			
 				<IonGrid fixed={true}>
 					<IonRow>
 						{cocktails ? (
@@ -42,7 +41,7 @@ const Home: React.FC = () => {
 						)}
 					</IonRow>
 				</IonGrid>
-			</Container>
+			
 		</IonPage>
 	);
 };
