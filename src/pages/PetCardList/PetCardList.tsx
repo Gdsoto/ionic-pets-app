@@ -6,12 +6,21 @@ import PetCard from '../../components/PetCard/PetCard';
 import { FormWrap } from '../../components/shared/Form/Form';
 import { Loader } from '../../components/shared/Loader/Loader';
 import { IonIcon } from '@ionic/react';
-import { earthOutline } from 'ionicons/icons';
+import { addOutline, earthOutline } from 'ionicons/icons';
 import PetsApi from '../../services/api';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../context/store';
+import { useHistory } from 'react-router';
 
 const PetCardList = () => {
+	const history = useHistory();
+	const { roles } = useSelector((state: RootState) => state.login);
 	const [pets, setPets] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
+
+	const handleClick = () => {
+		history.push('/new-pet');
+	};
 
 	const getPetsComponent = () => {
 		if (pets.length > 0) {
@@ -54,6 +63,11 @@ const PetCardList = () => {
 		<Main>
 			<BackButton />
 			<Title>Mascotas 🐶</Title>
+			{roles.includes('ADMIN') && (
+				<button className="add-to-cart" onClick={handleClick}>
+					<IonIcon icon={addOutline}></IonIcon> Nueva mascota
+				</button>
+			)}
 			<ListWrapper>
 				{isLoading ? (
 					<FormWrap>

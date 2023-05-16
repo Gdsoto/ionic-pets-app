@@ -17,6 +17,21 @@ export const FormWrap = styled.section`
 		0px 4px 8px rgba(48, 49, 51, 0.1);
 	border-radius: 8px;
 	margin-bottom: 90px;
+
+	.files {
+		color: ${GRAY_500};
+		border: 4px dashed ${GRAY_500};
+		border-radius: 8px;
+		text-align: center;
+		padding: 30px 0;
+	}
+
+	.file-list {
+		color: ${GRAY_500};
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
 `;
 
 export const FormLabel = styled.p`

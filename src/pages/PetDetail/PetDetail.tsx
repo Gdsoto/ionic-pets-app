@@ -22,6 +22,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { Button } from '../../components/shared/Button/Button';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../context/store';
+import { useHistory } from 'react-router';
 
 export interface Ipet {
 	name: string;
@@ -42,7 +43,8 @@ export interface Iresources {
 }
 
 const PetCardList = ({ match }) => {
-	const { rol } = useSelector((state: RootState) => state.login);
+	const history = useHistory();
+	const { roles } = useSelector((state: RootState) => state.login);
 	const petId = match.params.id;
 	const [pet, setPet] = useState<Ipet>({
 		name: '',
@@ -58,6 +60,13 @@ const PetCardList = ({ match }) => {
 		age: '',
 	});
 	const [isLoading, setIsLoading] = useState(false);
+
+	const createAdoption = () => {
+		history.push(`/adopt/${petId}`);
+	};
+	const updatePet = () => {
+		history.push(`/edit-pet/${petId}`);
+	};
 
 	const getPetComponent = () => {
 		if (Object.keys(pet).length > 0) {
@@ -99,7 +108,11 @@ const PetCardList = ({ match }) => {
 						<p className="text space">
 							{pet?.sex === 'HEMBRA' ? 'Hembra' : 'Macho'}
 						</p>
-						{rol === 'USER' && <Button>Adoptame!</Button>}
+						{!roles.includes('ADMIN') ? (
+							<Button onClick={createAdoption}>Adoptame!</Button>
+						) : (
+							<Button onClick={updatePet}>Actualizar mascota</Button>
+						)}
 					</section>
 				</>
 			);
@@ -148,7 +161,7 @@ const PetCardList = ({ match }) => {
 					)}
 				</PetWrapper>
 			</Main>
-			<BottomNav role={rol} />
+			<BottomNav role={roles} />
 		</PageLayout>
 	);
 };

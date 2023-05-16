@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../context/store';
 
 const PetCard = ({ pet }) => {
-	const { rol } = useSelector((state: RootState) => state.login);
+	const { roles } = useSelector((state: RootState) => state.login);
 	const history = useHistory();
 
 	const onClick = () => {
@@ -27,7 +27,9 @@ const PetCard = ({ pet }) => {
 				</div>
 				<div className="button-wrap">
 					<Fab aria-label="add" color="secondary" onClick={onClick}>
-						<IonIcon icon={rol === 'USER' ? heartSharp : eyeOutline}></IonIcon>
+						<IonIcon
+							icon={!roles.includes('ADMIN') ? heartSharp : eyeOutline}
+						></IonIcon>
 					</Fab>
 				</div>
 			</div>

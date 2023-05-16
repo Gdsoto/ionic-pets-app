@@ -7,7 +7,7 @@ const config: CapacitorConfig = {
 	bundledWebRuntime: false,
 	server: {
 		androidScheme: 'http',
-		allowNavigation: ['http://186.31.177.165:19994/api'],
+		allowNavigation: ['http://186.154.135.199:19994/api'],
 		cleartext: true,
 	},
 };

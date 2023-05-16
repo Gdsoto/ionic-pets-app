@@ -3,7 +3,7 @@ import { IonIcon } from '@ionic/react';
 import { appsOutline, logoOctocat, documentsOutline } from 'ionicons/icons';
 import { useHistory } from 'react-router';
 
-const BottomNav = ({ role = 'USER' }) => {
+const BottomNav = ({ role = ['USER'] }) => {
 	const history = useHistory();
 
 	const navigate = (redirect: string) => {
@@ -13,7 +13,7 @@ const BottomNav = ({ role = 'USER' }) => {
 	return (
 		<NavWrapper>
 			<div className="nav-wrap">
-				{role === 'USER' ? (
+				{!role.includes('ADMIN') ? (
 					<>
 						<div className="icon" onClick={() => navigate('/dash')}>
 							<IonIcon icon={appsOutline}></IonIcon>

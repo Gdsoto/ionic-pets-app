@@ -13,7 +13,7 @@ import useAnimation from '../Hooks/useAnimation';
 
 const Routes = () => {
 	const isAuth = useSelector((state: RootState) => state.auth.isAuth);
-	const { rol } = useSelector((state: RootState) => state.login);
+	const { roles } = useSelector((state: RootState) => state.login);
 	const { animation } = useAnimation(4000);
 
 	if (animation) {
@@ -23,7 +23,7 @@ const Routes = () => {
 	return (
 		<IonReactRouter>
 			<IonRouterOutlet>
-				{isAuth ? AuthRoutes(rol) : UnAuthRoutes()}
+				{isAuth ? AuthRoutes(roles) : UnAuthRoutes()}
 			</IonRouterOutlet>
 		</IonReactRouter>
 	);

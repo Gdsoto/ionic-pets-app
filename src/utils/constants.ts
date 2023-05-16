@@ -17,6 +17,7 @@ export const VALIDATIONS = {
 	FIELD_REQUIRED: 'Campo requerido',
 	DIFFERENT_VALUES: 'Los campos no coinciden',
 	MAX_40_CHARACTER: 'Maximo 40 caracteres',
+	MAX_160_CHARACTER: 'Maximo 160 caracteres',
 	SPECIFIC_VALUE: 'El teléfono debe empezar con 3'
 };
 

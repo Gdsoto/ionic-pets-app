@@ -5,7 +5,6 @@ import { Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { ReactElement } from 'react';
 import { InputWrapper } from './style';
-import { PINK_300 } from '../../../../utils/constants';
 
 interface Props {
 	label?: string;
@@ -19,6 +18,7 @@ interface Props {
 	name?: string;
 	type: string;
 	id?: string;
+	multiline?: boolean;
 }
 
 const Input = ({
@@ -30,6 +30,7 @@ const Input = ({
 	nameValue,
 	placeHolder,
 	disabled,
+	multiline = false,
 }: Props) => {
 	return (
 		<InputWrapper>
@@ -40,10 +41,12 @@ const Input = ({
 					<TextField
 						{...field}
 						fullWidth
-						color='warning'
+						color="warning"
 						id={id}
 						label={label}
 						type={type}
+						multiline={multiline}
+						maxRows={4}
 						disabled={disabled}
 						placeholder={placeHolder}
 						helperText={errors?.[nameValue]?.message}

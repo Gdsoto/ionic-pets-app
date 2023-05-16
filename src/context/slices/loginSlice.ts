@@ -3,14 +3,14 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface LoginState {
 	id: number;
-	rol: string;
+	roles: string[];
 	firtsName: string;
 	secondName: string;
 	lastName: string;
 }
 
 const initialState: LoginState = {
-	rol: 'USER',
+	roles: [],
 	id: 0,
 	firtsName: '',
 	secondName: '',
@@ -23,7 +23,7 @@ export const loginSlice = createSlice({
 	reducers: {
 		updateLoginState: (state, action: PayloadAction<LoginState>) => {
 			state.id = action.payload.id;
-			state.rol = action.payload.rol;
+			state.roles = action.payload.roles;
 			state.firtsName = action.payload.firtsName;
 			state.lastName = action.payload.lastName;
 		},
